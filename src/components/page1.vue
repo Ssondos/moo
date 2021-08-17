@@ -12,9 +12,13 @@
       </p>
       <p style="color: skyblue">JOIN AS A CLINIC</p>
     </form>
+
+    <p class="response" v-if="response">{{ response }}</p>
+    <p class="error" v-if="error">{{ error }}</p>
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "page1",
   data() {
@@ -23,11 +27,20 @@ export default {
         email: null,
         password: null,
       },
+      response: null,
+      error: null,
     };
   },
   methods: {
     login() {
-      console.log(this.form);
+      axios
+        .post("https://test-api.baredex.com/api/admin/login", this.form)
+        .then((res) => {
+          this.response = 'Welcome ya basha ' + res.data.data.user.name
+        })
+        .catch((error) => {
+          this.error = JSON.stringify(error.response.data.message);
+        });
     },
   },
 };
@@ -36,6 +49,19 @@ export default {
 body {
   background-color: azure;
 }
+
+.response {
+  font-size: 30px;
+  color: blue;
+  font-weight: bold;
+}
+
+.error {
+  font-size: 30px;
+  color: tomato;
+  font-weight: bold;
+}
+
 form {
   background-color: whitesmoke;
   height: 300px;

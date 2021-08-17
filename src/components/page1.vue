@@ -1,7 +1,7 @@
 <template>
   <div>
     <form @submit.prevent>
-      <h1>SIGN IN</h1>
+      <h1>SIGN IN Mohamed Adel</h1>
       <p style="color: darkgray">if you care registered user sign in now</p>
       <input type="text" placeholder="your e-mail" v-model="form.email" /><br />
       <input type="password" placeholder="your password" v-model="form.password" /><br />

@@ -1,6 +1,6 @@
 <template>
   <div class="sign">
-    <page1 msg="Welcome to Your Vue.js App" />
+    <page1 />
   </div>
 </template>
 

@@ -1,14 +1,14 @@
 <template>
 
 	<div>
-		<form>
+		<form @submit.prevent>
 		
 		<h1>SIGN IN</h1>
 		<p style="color:darkgray">if you care registered user sign in now</p>
-		<input type="text" placeholder="your e-mail"><br>
-		<input type="password" placeholder="your password" ><br>
+		<input type="text" v-model="form.email" placeholder="your e-mail"><br>
+		<input type="password" v-model="form.password" placeholder="your password" ><br>
 		<a href="#" style="color:darkgray" class="so">forget password?</a><br>
-		<button>sign in </button><br>
+		<button @click="submit">sign in </button><br>
 		<p style="color:darkgray"> <a href="#" style="color:darkgray">Request access</a> to your clinic</p>
 		<p style="color:skyblue">JOIN AS A CLINIC</p>
 		
@@ -19,6 +19,20 @@
 
 export default {
   name: "page1",
+  data(){
+	  return{
+		  form:{
+			  email:null,
+			  password:null,
+		  }
+	  }
+  },
+  methods:{
+	  submit(){
+		  console.log(this.form)
+	  }
+  }
+
 };
  
 </script>

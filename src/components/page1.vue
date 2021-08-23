@@ -5,6 +5,8 @@
       <p style="color: darkgray">if you care registered user sign in now</p>
       <input type="text" placeholder="your e-mail" v-model="form.email" /><br />
       <input type="password" placeholder="your password" v-model="form.password" /><br />
+      <p class="response" v-if="response">{{ response }}</p>
+      <p class="error" v-if="error">{{ error }}</p>
       <a href="#" style="color: darkgray" class="so">forget password?</a><br />
       <button @click="login">sign in</button><br />
       <p style="color: darkgray">
@@ -12,6 +14,7 @@
       </p>
       <p style="color: skyblue">JOIN AS A CLINIC</p>
     </form>
+    
   </div>
 </template>
 <script>
@@ -24,14 +27,17 @@ export default {
         email: null,
         password: null,
       },
+      response: null,
+      error: null,
     };
   },
   methods: {
     login() {
-      axios.post('https://test-api.bradex.com/api/admin/login', this.form).then(res =>{
+      console.log(this.form);
+      axios.post('https://test-api.baredex.com/api/admin/login', this.form).then(res =>{
         console.log(res.data);
       }).catch(error => {
-        console.log(error.response.data);
+        this.error = JSON.stringify(error.response.data.message);
       })
     },
   },
